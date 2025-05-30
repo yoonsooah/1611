@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>생성형 AI에 대한 인식 조사 인포그래픽</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            background-color: #F4F7F9; /* 기본 배경 */
+            color: #263238; /* Dark Text */
+            line-height: 1.7;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #FFFFFF; /* 카드 배경 (메인 컨테이너) */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden; /* Ensures child elements adhere to border radius */
+        }
+        header {
+            background-color: #2A62B6; /* Primary Blue */
+            color: #FFFFFF;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        header .subtitle {
+            margin: 0;
+            font-size: 1em;
+            color: #E0F2FE; /* Supporting Light Blue */
+            font-weight: 300;
+        }
+        .content-padding {
+            padding: 25px 30px;
+        }
+        .section {
+            margin-bottom: 35px;
+            padding: 25px;
+            background-color: #FFFFFF; /* Section background - changed to white for better card distinction */
+            border: 1px solid #E0F2FE; /* Light border for sections */
+            border-radius: 10px;
+        }
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        .section-title {
+            font-size: 1.9em;
+            color: #2A62B6; /* Primary Blue */
+            border-bottom: 3px solid #4ECDC4; /* Secondary Teal */
+            padding-bottom: 12px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        .card {
+            background-color: #E0F2FE; /* Supporting Light Blue for cards */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(42, 98, 182, 0.1); /* Subtle shadow with primary color tone */
+        }
+        .card h3 {
+            font-size: 1.3em;
+            color: #2A62B6; /* Primary Blue */
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .card h4 {
+            font-size: 1.1em;
+            color: #263238; /* Dark Text */
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .card p {
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+        .chart-container {
+            position: relative;
+            min-height: 320px; /* Adjusted for better label display */
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #FFFFFF; /* White background for charts */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .chart-summary {
+            font-size: 0.9em;
+            color: #263238;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #F4F7F9;
+            border-radius: 6px;
+        }
+        .interview-card h4 {
+            color: #2A62B6; /* Primary Blue for interviewee names */
+        }
+        .keywords-title {
+            font-weight: 500;
+            color: #263238; /* Dark Text */
+            display: inline;
+        }
+        .keywords span {
+            display: inline-block;
+            background-color: #4ECDC4; /* Secondary Teal */
+            color: #FFFFFF;
+            padding: 4px 10px;
+            margin: 3px 3px;
+            border-radius: 15px; /* Pill shape */
+            font-size: 0.85em;
+        }
+        ul {
+            padding-left: 20px;
+            margin-top: 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            header .subtitle {
+                font-size: 0.9em;
+            }
+            .section-title {
+                font-size: 1.6em;
+            }
+            .card h3 {
+                font-size: 1.15em;
+            }
+            .content-padding {
+                padding: 20px 15px;
+            }
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>학생들은 어떻게 생각할까? 생성형 AI에 대한 인식 조사</h1>
+            <p class="subtitle">미림마이스터고 디자인과 1학년 6반 3조: 김율리, 문연경, 박지우, 윤수아 | 작성일: 2025년 5월</p>
+        </header>
+
+        <div class="content-padding">
+            <div class="section">
+                <h2 class="section-title">1. 조사 동기와 목적</h2>
+                <p>최근 생성형 AI의 등장으로 다양한 서비스가 쉽게 활용되고 있으며, 학생들은 과제 수행 등 필요에 따라 적극적으로 사용한다. 이에 학생들의 생성형 AI 결과물 허용 범위와 과정에서 발생 가능한 윤리적 문제에 대한 심층 논의의 필요성을 느꼈다. 본 조사는 생성형 AI 사용자들의 윤리적 사용 범위 인식을 분석하고, 올바른 AI 사용과 건전한 문화 정착에 기여함을 목적으로 한다.</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">2. 조사 계획</h2>
+                <div class="card">
+                    <h3>조사 기간</h3>
+                    <p>2025년 5월 21일 ~ 2025년 5월 23일</p>
+                </div>
+                <div class="card">
+                    <h3>조사 대상</h3>
+                    <p>미림마이스터고 디자인과 1학년 6반 (총 17명)</p>
+                </div>
+                <div class="card">
+                    <h3>조사 방법</h3>
+                    <p>설문 조사 및 심층 면담</p>
+                    <ul>
+                        <li><strong>설문 조사:</strong> 생성형 AI의 윤리적 사용 범위에 대한 인식 수준 조사</li>
+                        <li><strong>심층 면담:</strong> 대표 학생 2명을 대상으로 생성형 AI 활용 윤리적 문제 인식, 개인적 경험, 해결 방안 의견 조사</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">3. 조사 결과</h2>
+                
+                <h3>3.1 설문 조사 결과</h3>
+                <p style="margin-bottom: 20px; text-align: center; font-style: italic;">생성형 AI 활용 과제 수행 관련 윤리적 문제 인식에 대한 세 가지 상황별 학생 의견 조사 결과입니다.</p>
+
+                <div class="card">
+                    <h4>상황 1: 생성형 AI로 생성한 아이디어를 그대로 제출하는 행위</h4>
+                    <div class="chart-container">
+                        <canvas id="surveyChart1"></canvas>
+                    </div>
+                    <p class="chart-summary">응답자의 <strong>58.8%</strong> (전혀 괜찮지 않다 29.4% + 괜찮지 않다 29.4%)가 AI 생성 아이디어를 별도 출처 표기나 재창작 없이 제출하는 것을 윤리적 문제로 판단했다. 반면, 긍정적 응답(괜찮다 11.8% + 매우 괜찮다 5.9%)은 <strong>17.7%</strong>에 그쳤다.</p>
+                </div>
+
+                <div class="card">
+                    <h4>상황 2: 생성형 AI를 이용하여 다른 사람의 창작물과 매우 비슷하게 만들어 개인적으로 사용하는 것</h4>
+                    <div class="chart-container">
+                        <canvas id="surveyChart2"></canvas>
+                    </div>
+                    <p class="chart-summary">응답자의 <strong>70.5%</strong> (전혀 괜찮지 않다 52.9% + 괜찮지 않다 17.6%)가 AI 생성물을 타인의 창작물과 유사하게 만들어 사용하는 것을 심각한 윤리적 문제로 간주했다. 긍정적 응답(괜찮다 5.9% + 매우 괜찮다 0.0%)은 <strong>5.9%</strong>에 불과했다.</p>
+                </div>
+
+                <div class="card">
+                    <h4>상황 3: 생성형 AI가 제공한 정보가 사실인지 확인하지 않고 온라인이나 다른 사람에게 공유하는 행위</h4>
+                    <div class="chart-container">
+                        <canvas id="surveyChart3"></canvas>
+                    </div>
+                    <p class="chart-summary">응답자의 <strong>58.8%</strong> (전혀 괜찮지 않다 23.5% + 괜찮지 않다 35.3%)가 AI 정보 교차 검증 없는 공유를 윤리적으로 부적절하다고 인식했다. '보통이다' 응답도 35.3%로 높게 나타났으며, 긍정적 응답(괜찮다 5.9% + 매우 괜찮다 0.0%)은 <strong>5.9%</strong>였다.</p>
+                </div>
+
+                <h3 style="margin-top: 30px;">3.2 심층 면담 결과</h3>
+                <div class="card interview-card">
+                    <h4>조은지 학생</h4>
+                    <p><strong class="keywords-title">주요 키워드:</strong> <span class="keywords">저작권 문제</span> <span class="keywords">새로운 규정 필요성</span> <span class="keywords">저작권과 창작물</span> <span class="keywords">윤리적 논의</span> <span class="keywords">AI 의존 위험성</span> <span class="keywords">창의적 사고 중요성</span></p>
+                    <p><strong>주요 내용:</strong> 생성형 AI를 과제에 그대로 사용하는 것은 사용자의 사고력과 창의력을 약화시킬 수 있으며, AI는 도구로서 활용하는 것이 바람직하다는 입장을 밝혔다.</p>
+                </div>
+                <div class="card interview-card">
+                    <h4>안이현 학생</h4>
+                    <p><strong class="keywords-title">주요 키워드:</strong> <span class="keywords">정보 공유 윤리</span> <span class="keywords">부정확한 정보 유통</span> <span class="keywords">정보 검증 중요성</span> <span class="keywords">표절</span> <span class="keywords">창작물 독창성</span></p>
+                    <p><strong>주요 내용:</strong> 생성형 AI를 과제에 그대로 사용하는 것은 학습 효과를 저해하며, 과제를 통해 스스로 배우는 과정이 중요하다고 강조했다. 타인 창작물 모방은 AI 여부와 관계없이 표절이며, AI 정보는 오류 가능성이 있어 사실 확인 없는 공유는 윤리적 책임이 따른다고 명확히 인식했다.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">4. 결론</h2>
+                <div class="card">
+                    <h4>생성형 AI 활용 시 윤리적 기준 마련 필요</h4>
+                    <p>전체 응답자의 58.8%가 생성형 AI 결과물을 그대로 과제에 제출하는 것에 부정적 입장을 보여, 학교 차원의 명확한 가이드라인(AI 사용 명시, 원본 제출 금지 등) 마련이 필수적이다. AI 정보는 신뢰할 수 있는 출처를 통해 검토해야 한다.</p>
+                </div>
+                <div class="card">
+                    <h4>교육과 인식 개선의 중요성</h4>
+                    <p>응답자의 70.5%가 AI 생성 정보의 무비판적 공유에 부정적 의견을 나타내, 정보 신뢰성과 진위의 중요성을 인식하고 있음을 보여준다. 디지털 윤리, 저작권, 정보 검증 관련 정기 교육이 필요하며, 초등 단계부터 AI 윤리 교육이 중요하다. (2023년, 한국초등교육학회 연구 인용: AI 윤리 프로그램은 도덕적 사고력과 AI 리터러시 증진에 기여)</p>
+                </div>
+                <div class="card">
+                    <h4>AI 시대의 책임 있는 태도 정립 필요</h4>
+                    <p>학생 다수가 AI 결과의 무비판적 수용이나 미확인 공유에 부정적 인식을 가져 일정 수준 윤리 의식을 보였다. 체계적, 지속적 교육으로 이를 강화해야 한다. AI 결과는 부정확하거나 편향될 수 있으므로, 비판적 사고와 분석, 재구성 능력이 요구된다.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">5. 제언 및 다짐</h2>
+                <p>AI 활용이 늘어나는 지금, 학생들은 올바른 사용법을 익혀야 한다. 학교는 AI 과제 사용 규칙과 정보 선별 방법을 논의해야 한다. (예: AI 도움 명시, 정보 재확인 습관) 학생들은 AI를 답 생성 도구가 아닌, 자신의 생각과 표현을 담는 도구로 여겨야 한다. 이번 조사를 통해 AI의 편리함과 책임감 있는 사용의 중요성을 재확인했다. 앞으로 AI 사용 시 윤리 기준을 지키고, 스스로 생각하며 배우는 태도를 실천하여 책임 있는 디지털 시민으로 성장해야 한다.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y', // Horizontal bar chart for better label readability
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    max: 60, // Adjusted based on max data values for better scale
+                    ticks: {
+                        callback: function(value) {
+                            return value + "%"
+                        },
+                        color: '#263238',
+                        font: {
+                           family: "'Noto Sans KR', sans-serif"
+                        }
+                    },
+                    grid: {
+                        color: '#E0E0E0' // Lighter grid lines
+                    }
+                },
+                y: {
+                     ticks: {
+                        color: '#263238',
+                        font: {
+                           family: "'Noto Sans KR', sans-serif",
+                           size: 11 // Slightly smaller for long labels
+                        }
+                    },
+                    grid: {
+                        display: false // Hide y-axis grid lines for cleaner look
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false // No legend needed for single dataset
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw.toFixed(1) + '%';
+                        }
+                    },
+                    bodyFont: {
+                        family: "'Noto Sans KR', sans-serif"
+                    },
+                    titleFont: {
+                        family: "'Noto Sans KR', sans-serif"
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuart'
+            }
+        };
+
+        const chartBackgroundColor = ['#2A62B6', '#4ECDC4', '#A9A9A9', '#86BBD8', '#F2C94C']; // Primary, Secondary, Accent, Lighter Blue, Yellow Accent
+        const chartBorderColor = chartBackgroundColor.map(color => color.replace(')', ', 0.8)').replace('rgb', 'rgba')); // Slightly transparent border
+
+        // Chart 1: 생성형 AI로 생성한 아이디어를 그대로 제출하는 행위
+        new Chart(document.getElementById('surveyChart1'), {
+            type: 'bar',
+            data: {
+                labels: ['전혀 괜찮지 않다', '괜찮지 않다', '보통이다', '괜찮다', '매우 괜찮다'],
+                datasets: [{
+                    label: '응답 비율',
+                    data: [29.4, 29.4, 23.5, 11.8, 5.9],
+                    backgroundColor: chartBackgroundColor,
+                    borderColor: chartBorderColor,
+                    borderWidth: 1,
+                    borderRadius: 5 // Rounded bars
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        // Chart 2: 생성형 AI를 이용하여 다른 사람의 창작물과 매우 비슷하게 만들어서 개인적으로 사용하는 것
+        new Chart(document.getElementById('surveyChart2'), {
+            type: 'bar',
+            data: {
+                labels: ['전혀 괜찮지 않다', '괜찮지 않다', '보통이다', '괜찮다', '매우 괜찮다'],
+                datasets: [{
+                    label: '응답 비율',
+                    data: [52.9, 17.6, 23.5, 5.9, 0.0],
+                    backgroundColor: chartBackgroundColor,
+                    borderColor: chartBorderColor,
+                    borderWidth: 1,
+                    borderRadius: 5
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        // Chart 3: 생성형 AI가 제공한 정보가 사실인지 확인하지 않고 온라인이나 다른 사람에게 공유하는 행위
+        new Chart(document.getElementById('surveyChart3'), {
+            type: 'bar',
+            data: {
+                labels: ['전혀 괜찮지 않다', '괜찮지 않다', '보통이다', '괜찮다', '매우 괜찮다'],
+                datasets: [{
+                    label: '응답 비율',
+                    data: [23.5, 35.3, 35.3, 5.9, 0.0],
+                    backgroundColor: chartBackgroundColor,
+                    borderColor: chartBorderColor,
+                    borderWidth: 1,
+                    borderRadius: 5
+                }]
+            },
+            options: commonChartOptions
+        });
+    </script>
+</body>
+</html>
